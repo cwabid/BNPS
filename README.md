@@ -1,1 +1,1 @@
-# fakenews-detection-using-webscraping-and-nlp
+# fakenews-detection-using-webscraping-and-NLP
