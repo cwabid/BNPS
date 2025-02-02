@@ -1,5 +1,4 @@
 import json
-import sqlite3
 import pandas as pd
 import os
 
@@ -51,42 +50,3 @@ def write_json(file_path, data):
         return True
     except Exception:
         return False
-
-def create_table(db_path):
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS news (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                title TEXT NOT NULL,
-                content TEXT NOT NULL
-            )
-        """)
-        conn.commit()
-        conn.close()
-        return True
-    except Exception:
-        return False
-
-def insert_data(db_path, data):
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        cursor.executemany("INSERT INTO news (title, content) VALUES (?, ?)", data)
-        conn.commit()
-        conn.close()
-        return True
-    except Exception:
-        return False
-
-def fetch_data(db_path):
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        cursor.execute("SELECT title, content FROM news")
-        data = cursor.fetchall()
-        conn.close()
-        return data
-    except Exception:
-        return []
