@@ -1,1 +1,1 @@
-# fakenews-detection-using-webscraping-and-NLP
+# BNPS: A Customize Bangla Newspaper Scrapper
