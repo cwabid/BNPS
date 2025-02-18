@@ -1,1 +1,1 @@
-# BNPS: A Customize Bangla Newspaper Scrapper
+# BNPS: A Customized Bangla Newspaper Scrapper
