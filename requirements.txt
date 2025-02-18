@@ -1,0 +1,14 @@
+Django
+celery
+django-celery-beat
+django-celery-results
+redis
+kombu
+amqp
+pytz
+tzdata
+python-dotenv
+requests
+beautifulsoup4
+lxml
+ipython

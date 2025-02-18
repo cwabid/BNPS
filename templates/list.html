@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News List</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>News Sources</h2>
+            <a href="{% url 'news_view' %}" class="all-news-btn">Show All News</a>
+            <ul class="source-list">
+                {% for source in sources %}
+                    <li><a href="?source={{ source.name }}">{{ source.name }}</a></li>
+                {% empty %}
+                    <li>No sources available.</li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1 class="title">Scraped News ({{ total_results }})</h1>
+
+            <form method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Search news..." value="{{ query }}" class="search-box">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+
+            <!-- News Grid -->
+            <div class="news-grid">
+                {% for news in news_objects %}
+                    <div class="news-item">
+                        <h3 class="news-title">{{ news.title }}</h3>
+                        <p class="news-content">
+                            {{ news.content|linebreaksbr|truncatewords:30 }}
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-source">Source: {{ news.source }}</span>
+                            <span class="news-date">Scraped: {{ news.date }}</span>
+                            <a href="{{ news.link }}" class="news-link" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="no-news">No news found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
